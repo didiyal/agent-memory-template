@@ -54,6 +54,33 @@
 | 项目 llm-wiki 型 | 单项目深度知识（可另建 wiki/） | SCHEMA 思想 + wiki 四类页 + index |
 | 项目轻量契约型 | 普通项目/定时任务 | project-lite/PROJECT-CONTRACT.md 一个文件即可 |
 
-## 六、验收
+## 六、使用生命周期（三步）
+
+> 这是本模板的标准用法：拉取 → 初始化 → 注入 → 多 Agent 共写演化。
+
+### 第 1 步 · 拉取
+`git clone <远程仓库>` 到本机任意位置（克隆后的目录就是记忆库根目录 {{ROOT}}）。
+
+### 第 2 步 · 初始化＋注入（脚本自动化）
+```bash
+python scripts/init_template.py --owner 你的姓名 --inject --yes
+```
+- 初始化：替换全库 {{ROOT}}／【姓名】占位符；
+- 注入：探测本机的 Claude Code／Codex／ZCode，把总库注入段写入各自的自动加载文件（已有内容先备份 .bak-时间戳）；
+- 更新 registry 接入点状态并 git commit。
+- AutoClaw：把 inject-universal.md 内容存为平台记忆卡。
+
+### 第 3 步 · 多 Agent 共写演化（无需脚本，规则如下）
+为什么注入到每个 Agent 的自动加载层？——**这样无论用哪个 Agent，只要开启会话，都自动带着记忆、也都能增量修改记忆**。演化规则：
+
+1. **谁改谁提交**：任何 Agent 修改记忆文件后，当场 `git commit`（commit 信息带写入者身份）；
+2. **只增量，不重写**：改文件＝锚定 Edit 小改；重写/删除前旧版进 _archive 并记 log；
+3. **落位走判定四问**（README §三）：个人事实进 people，项目事实进该项目（轻量契约），机器事实进 machine；
+4. **log 追加一行**：每次有意义的变更（里程碑/纠错/新页面）在 log.md 追加一行；
+5. **冲突**：同一文件两个 Agent 都改了——后 commit 者负责合并，以 git 为准；
+6. **平台记忆卡（AutoClaw）**：作为应急层与总库双写（重要纠错两边同步），日常增量以总库为准；
+7. **lint 兜底**：定期跑 lint-checklist.md，漂移会被抓出来。
+
+## 七、验收
 
 新机器 git clone 后，新 Agent 只凭本 README 能答对冷启动问题（人 3 题/机器 3 题/项目 3 题）= 合格。
