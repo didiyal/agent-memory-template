@@ -1,5 +1,7 @@
 # Agent Memory Template — 跨 Agent 记忆总库模板
 
+> 远程仓库：https://github.com/didiyal/agent-memory-template（公开）｜本机：D:\桌面\agent-memory-template
+
 > 用途：为任何「一人 + 一台机器 + 多个 AI 工具」的环境，一键搭建跨 Agent 共享的记忆总库。
 > 本模板 = 【OWNER】的记忆机制抽象（2026-10-20 从 D:\AgentMemory + 两套 llm-wiki + 轻量契约型实践提炼）。
 > 自举入口：任何新 Agent 接管本库时，第一件事 = 通读本文件。
